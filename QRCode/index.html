@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR CODE</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        <form>
+            <h1>網址轉QRCode</h1>
+            <input type="url" id="txt" placeholder="https://www.google.com.tw" autocomplete="off">
+            <div class="btn-group">
+                <button type="button" id="button" class="btn one">產生</button>
+                <button type="button" onclick="QRCodeRemove()" class="btn two">清除</button>
+            </div>
+            <div class="txt">
+                <p>備註1:這是無聊時做的陽春版，對於美觀就別太計較ㄌ</p>
+                <p>備註2:如果有BUG，歡迎IG聯絡我，我會盡快處理!</p>
+                <h3>IG : aji_0417</h3>
+            </div>
+        </form>
+    </div>
+    <div id="qrcode"></div>
+
+
+    <p class="copyright"> &copy; 2022 AJI Hsieh. All rights reserved.</p>
+    <script>
+        $('#button').on('click', function () {
+            $('#qrcode').qrcode({
+                width: 150,
+                height: 150,
+                text: $('#txt').val()
+            });
+            $("#button").prop('disabled', true);
+        });
+
+        function QRCodeRemove() {
+            var remove = confirm('你確定清除嗎？');
+            if (remove) {
+                $("#qrcode").remove();
+                location.reload();
+            }
+
+        }
+    </script>
+</body>
+
+
+</html>
